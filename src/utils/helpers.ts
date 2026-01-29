@@ -79,14 +79,16 @@ export const getNodeStartTime = (nodes: ScheduleNode[], nodeIndex: number): numb
 };
 
 // Create a filler node
-export const createFillerNode = (durationMinutes: number): ScheduleNode => {
+export const createFillerNode = (durationMinutes: number, startMinutes: number = 0): ScheduleNode => {
   return {
     id: generateId(),
     name: '',
     durationMinutes,
+    startMinutes,
     color: 'blue', // Doesn't matter for filler
     notes: '',
     isFiller: true,
+    isLocked: false,
     repeatRule: { type: 'none' },
     reminder: { enabled: false, minutesBefore: 10 },
     createdAt: Date.now(),
@@ -98,15 +100,18 @@ export const createFillerNode = (durationMinutes: number): ScheduleNode => {
 export const createNode = (
   name: string,
   durationMinutes: number = DEFAULT_NEW_NODE_DURATION,
-  color: NodeColorKey = 'blue'
+  color: NodeColorKey = 'blue',
+  startMinutes: number = 0
 ): ScheduleNode => {
   return {
     id: generateId(),
     name,
     durationMinutes,
+    startMinutes,
     color,
     notes: '',
     isFiller: false,
+    isLocked: false,
     repeatRule: { type: 'none' },
     reminder: { enabled: false, minutesBefore: 10 },
     createdAt: Date.now(),

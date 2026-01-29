@@ -36,12 +36,16 @@ export interface ScheduleNode {
   name: string;
   // Duration in minutes (always positive, all nodes sum to 1440)
   durationMinutes: number;
+  // Start time in minutes from midnight (0-1440)
+  startMinutes: number;
   // User-selected color key
   color: NodeColorKey;
   // Optional notes
   notes?: string;
   // Whether this is a filler (empty time) node
   isFiller: boolean;
+  // Whether this node is locked (can't be resized in edit mode)
+  isLocked: boolean;
   // Repeat settings
   repeatRule: RepeatRule;
   // Reminder settings
