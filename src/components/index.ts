@@ -12,3 +12,8 @@ export { TimePicker } from './TimePicker';
 export { RepeatPicker } from './RepeatPicker';
 export { NodeDetailModal } from './NodeDetailModal';
 export { TimeMarker } from './TimeMarker';
+export { CalendarPopup } from './CalendarPopup';
+export { PremiumModal } from './PremiumModal';
+export { Onboarding, useResetOnboarding } from './Onboarding';
+export { AIAssistantBar } from './AIAssistantBar';
+export { QuickActionsMenu } from './QuickActionsMenu';

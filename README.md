@@ -4,7 +4,7 @@
 
 ![Node24](https://img.shields.io/badge/React%20Native-Expo-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue) ![License](https://img.shields.io/badge/License-Proprietary-red)
 
-## 📱 About
+## About
 
 Node24 is a fresh take on day planning. Instead of traditional time-block calendars, you create "nodes" that represent activities. The magic? **Nodes always fill exactly 24 hours**.
 
@@ -14,29 +14,41 @@ Node24 is a fresh take on day planning. Instead of traditional time-block calend
 
 Empty time appears as subtle filler that shrinks as you add more activities.
 
-## ✨ Features
+## Features
 
 ### Core
-- 📅 **24-Hour Node System** — Add, edit, and resize nodes that always sum to a full day
-- 🎨 **10 Accent Colors** — Personalize each node with beautiful, curated colors
-- 📝 **Notes & Details** — Add context to any node
-- ↻ **Repeating Nodes** — Daily, weekdays, weekends, weekly, monthly, yearly
-- 🔔 **Smart Reminders** — Get notified before nodes start
+- **24-Hour Node System** — Add, edit, and resize nodes that always sum to a full day
+- **Drag-to-Resize** — Enter edit mode and drag node edges to adjust time
+- **Node Locking** — Lock nodes to prevent accidental edits
+- **10 Accent Colors** — Personalize each node with beautiful, curated colors
+- **Notes & Details** — Add context to any node
+- **Repeating Nodes** — Daily, weekdays, weekends, weekly, monthly, yearly
+- **Smart Reminders** — Get notified before nodes start
+- **Calendar Popup** — Jump to any date with the full calendar view
+- **Quick Actions** — Long-press nodes for edit, duplicate, lock, delete
 
 ### Design
-- 🌙 **Dark Mode First** — Elegant, eye-friendly interface
-- ⚡ **Native Feel** — Designed to feel like it belongs on iOS
-- 🎯 **Sharp & Clean** — No bubbly UI, just purposeful design
+- **Dark Mode First** — Elegant, eye-friendly interface
+- **Native Feel** — Designed to feel like it belongs on iOS
+- **Sharp & Clean** — No bubbly UI, just purposeful design
+- **Haptic Feedback** — Tactile responses to interactions
 
-### Premium Features (Coming Soon)
+### User Experience
+- **Onboarding Tutorial** — First-time users get a guided walkthrough
+- **Freemium Model** — 5 free nodes/day, premium for unlimited
+- **AI Assistant Bar** — Premium preview with smart scheduling suggestions
+- **Polished Settings** — Full control with working toggles
+
+### Premium Features (Coming to App Store)
 - Unlimited nodes per day
 - All color themes
+- Reminders & repeating nodes
 - Cloud sync across devices
 - AI-powered scheduling suggestions
 - Home screen widgets
-- Statistics & insights
+- Analytics & insights
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -49,19 +61,19 @@ Empty time appears as subtle filler that shrinks as you add more activities.
 
 ```bash
 # Clone the repository
-git clone https://github.com/RamiNoodle733/Schedule-App.git
-cd Schedule-App
+git clone https://github.com/RamiNoodle733/Node24.git
+cd Node24
 
 # Install dependencies
 npm install
 
 # Start the development server
-npx expo start
+npx expo start --tunnel
 ```
 
 ### Running on Device
 
-1. Install **Expo Go** from the App Store or Play Store
+1. Install **Expo Go** from the App Store
 2. Scan the QR code from the terminal
 3. The app will load on your device
 
@@ -71,37 +83,43 @@ npx expo start
 npx expo start --web
 ```
 
-## 🏗 Project Structure
+## Project Structure
 
 ```
 src/
-├── components/         # Reusable UI components
+├── components/           # Reusable UI components
 │   ├── AddNodeButton/
+│   ├── AIAssistantBar/   # AI suggestions UI
+│   ├── CalendarPopup/    # Date picker modal
 │   ├── ColorPicker/
 │   ├── DayHeader/
+│   ├── DraggableNodeList/ # Main schedule with drag-to-resize
 │   ├── DurationPicker/
 │   ├── FillerNode/
 │   ├── NodeDetailModal/
-│   ├── NodeList/
+│   ├── Onboarding/       # First-time user tutorial
+│   ├── PremiumModal/     # Upgrade prompt
+│   ├── QuickActionsMenu/ # Long-press actions
 │   ├── RepeatPicker/
 │   ├── ScheduleNodeCard/
-│   └── TimeMarker/
-├── screens/            # App screens
-│   └── HomeScreen/
-├── store/              # State management (Zustand)
-│   └── scheduleStore.ts
-├── theme/              # Design system
+│   └── TimePicker/
+├── screens/
+│   ├── HomeScreen/       # Main schedule view
+│   └── SettingsScreen/   # App settings
+├── store/
+│   └── scheduleStore.ts  # Zustand state management
+├── theme/
 │   ├── colors.ts
 │   ├── typography.ts
 │   └── spacing.ts
-├── types/              # TypeScript types
+├── types/
 │   └── index.ts
-└── utils/              # Helper functions
+└── utils/
     ├── helpers.ts
     └── notifications.ts
 ```
 
-## 🎨 Design System
+## Design System
 
 ### Colors
 
@@ -124,34 +142,37 @@ Node24 uses a carefully curated color palette:
 
 Uses SF Pro (iOS system font) for native feel.
 
-## 📦 Tech Stack
+## Tech Stack
 
-- **Framework:** React Native with Expo
+- **Framework:** React Native with Expo SDK 54
 - **Language:** TypeScript
 - **State:** Zustand with AsyncStorage persistence
 - **Navigation:** React Navigation
 - **Animations:** React Native Reanimated
+- **Gestures:** React Native Gesture Handler
+- **Haptics:** Expo Haptics
 - **Notifications:** Expo Notifications
 
-## 💰 Monetization
+## Monetization
 
 Node24 uses a **freemium model**:
 
 ### Free Tier
 - Up to 5 nodes per day
-- 4 basic colors
+- Basic colors
 - Single-day view
+- Edit mode with drag-to-resize
 
-### Premium ($4.99/month or $29.99/year)
+### Premium ($2.99/month or $19.99/year)
 - Unlimited nodes
 - All 10 colors
 - Reminders
 - Repeating nodes
 - Cloud sync
 - AI features
-- Widgets
+- Analytics
 
-## 📱 App Store Submission
+## App Store Submission
 
 ### Required
 1. Apple Developer Account ($99/year)
@@ -173,28 +194,41 @@ eas login
 eas build --platform ios
 ```
 
-## 🗺 Roadmap
+## Implemented Features
 
-- [x] Core node system
-- [x] Day navigation
-- [x] Node editing (name, color, duration)
-- [x] Repeat options
-- [x] Reminders
-- [ ] Drag-to-resize nodes
-- [ ] Calendar month view
-- [ ] Cloud sync
-- [ ] AI scheduling assistant
+- [x] Core node system (24hr always)
+- [x] Node editing (name, color, start/end time, notes)
+- [x] Drag-to-resize with edit mode
+- [x] Node locking
+- [x] Day navigation (arrows + calendar popup)
+- [x] Repeat options (7 patterns)
+- [x] Reminder settings
+- [x] Onboarding tutorial
+- [x] Freemium gate (5 nodes limit)
+- [x] Premium upgrade modal
+- [x] AI assistant bar (UI ready)
+- [x] Quick actions menu (long press)
+- [x] Settings screen with working toggles
+- [x] Haptic feedback throughout
+- [x] Dark mode
+
+## Coming Soon
+
+- [ ] Cloud sync with account system
+- [ ] AI scheduling (parse commands)
+- [ ] Voice-to-schedule
+- [ ] Analytics & insights
 - [ ] Home screen widgets
 - [ ] Apple Watch companion
 
-## 📄 License
+## License
 
 Proprietary — All rights reserved.
 
-## 👤 Author
+## Author
 
-Made with ❤️ for productivity enthusiasts.
+Made with love for productivity enthusiasts.
 
 ---
 
-**Node24** — *Plan your day, one node at a time.*
+**Node24** — *Your 24 hours, beautifully organized.*

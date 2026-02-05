@@ -1,0 +1,1 @@
+export { AIAssistantBar } from './AIAssistantBar';

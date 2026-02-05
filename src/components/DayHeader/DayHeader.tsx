@@ -12,6 +12,7 @@ interface DayHeaderProps {
   onPreviousDay: () => void;
   onNextDay: () => void;
   onToday: () => void;
+  onDatePress?: () => void; // Opens calendar popup
 }
 
 const formatDateForHeader = (dateString: string): { day: string; month: string; year: string } => {
@@ -27,10 +28,19 @@ export const DayHeader: React.FC<DayHeaderProps> = ({
   onPreviousDay,
   onNextDay,
   onToday,
+  onDatePress,
 }) => {
   const isTodayDate = isToday(dateString);
   const { day, month, year } = formatDateForHeader(dateString);
-  
+
+  const handleDatePress = () => {
+    if (onDatePress) {
+      onDatePress();
+    } else {
+      onToday();
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Pressable
@@ -40,10 +50,11 @@ export const DayHeader: React.FC<DayHeaderProps> = ({
       >
         <Text style={styles.navIcon}>‹</Text>
       </Pressable>
-      
+
       <Pressable
         style={({ pressed }) => [styles.dateContainer, pressed && styles.datePressed]}
-        onPress={onToday}
+        onPress={handleDatePress}
+        onLongPress={onToday}
       >
         <View style={styles.dateContent}>
           <Text style={styles.dayNumber}>{day}</Text>
@@ -58,7 +69,7 @@ export const DayHeader: React.FC<DayHeaderProps> = ({
           </View>
         )}
       </Pressable>
-      
+
       <Pressable
         style={({ pressed }) => [styles.navButton, pressed && styles.navButtonPressed]}
         onPress={onNextDay}
@@ -74,16 +85,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    height: layout.headerHeight + 10,
-    paddingHorizontal: spacing.md,
-    backgroundColor: colors.background,
-    borderBottomWidth: layout.dividerHeight,
-    borderBottomColor: colors.divider,
+    justifyContent: 'center',
+    flex: 1,
   },
   navButton: {
-    width: layout.minTouchTarget,
-    height: layout.minTouchTarget,
+    width: 36,
+    height: 36,
     justifyContent: 'center',
     alignItems: 'center',
   },
